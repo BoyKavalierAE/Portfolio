@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Tabs Browser</title>
+    <style>
+      /* --- BASE STYLES (mostly unchanged) --- */
+      .browser {
+        width: 300px;
+        height: 250px;
+        background: lightgrey;
+        border-radius: 7px;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 5px 5px 10px rgba(31, 31, 31, 0.245);
+      }
+
+      /* tabs-head */
+      .tabs-head {
+        background-color: #353535;
+        height: 36px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        padding-left: 10px;
+      }
+
+      .tabs-head .tabs {
+        display: flex;
+        gap: 4px;
+      }
+
+      .tabs-head .tab-open {
+        width: 90px;
+        height: 28px;
+        border-radius: 7px 7px 0 0;
+        background-color: #515151;
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .tabs-head .tab-open.active {
+        background-color: #666;
+      }
+
+      .tabs-head .tab-open .close-tab {
+        color: #fff;
+        font-size: 9px;
+        padding: 1px 4px;
+        border-radius: 50%;
+        cursor: default;
+      }
+
+      .tabs-head .tab-open span {
+        color: #fff;
+        font-size: 10px;
+        flex: 1;
+        text-align: center;
+      }
+
+      .tabs-head .window-opt {
+        display: flex;
+      }
+
+      .tabs-head .window-opt button {
+        height: 24px;
+        width: 24px;
+        border: none;
+        background-color: transparent;
+        transition: 0.1s ease-out;
+        color: #fff;
+        margin-bottom: 6px;
+        font-size: 10px;
+      }
+
+      .tabs-head .window-opt button:hover {
+        background-color: #515151c8;
+      }
+
+      .tabs-head .window-opt .window-close:hover {
+        background-color: rgb(255, 52, 52);
+      }
+
+      /* head-browser */
+      .head-browser {
+        position: relative;
+        width: 100%;
+        height: 35px;
+        background-color: #515151;
+        padding: 5px;
+        display: flex;
+        border-radius: 0;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .head-browser input {
+        background-color: #3b3b3b;
+        border: 2px solid transparent;
+        height: 100%;
+        border-radius: 20px;
+        outline: none;
+        color: #fff;
+        padding: 0 10px;
+        flex: 1;
+        font-size: 10px;
+      }
+
+      .head-browser input:hover {
+        background-color: #5d5d5d;
+      }
+
+      .head-browser input:focus {
+        border-color: rgb(173, 214, 255);
+        background-color: #3b3b3b;
+      }
+
+      .head-browser input::placeholder {
+        color: #fff;
+      }
+
+      /* --- FIXED ICON SIZES --- */
+      .head-browser button {
+        width: 22px;
+        height: 22px;
+        border: none;
+        background-color: transparent;
+        color: #fff;
+        border-radius: 50%;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+        padding: 0;
+      }
+
+      .head-browser button:hover {
+        background-color: #5d5d5d;
+      }
+
+      .head-browser button:disabled {
+        opacity: 0.4;
+      }
+
+      .head-browser button:disabled:hover {
+        background-color: transparent;
+      }
+
+      /* Adjusted star and three-dot icons */
+      .head-browser .star {
+        position: absolute;
+        right: 38px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13px;
+        opacity: 0.7;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 2px;
+      }
+
+      /* main content */
+      .browser-content {
+        flex: 1;
+        background: #e3e3e3;
+        padding: 10px;
+        color: #333;
+        font-family: sans-serif;
+        font-size: 12px;
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="browser">
+      <div class="tabs-head">
+        <div class="tabs">
+          <div class="tab-open active" data-tab="uiverse">
+            <span>Uiverse</span>
+            <div class="close-tab">✕</div>
+          </div>
+
+          <div class="tab-open" data-tab="google">
+            <span>Google</span>
+            <div class="close-tab">✕</div>
+          </div>
+        </div>
+
+        <div class="window-opt">
+          <button>-</button>
+          <button>□</button>
+          <button class="window-close">✕</button>
+        </div>
+      </div>
+
+      <div class="head-browser">
+        <button class="nav-left">←</button>
+        <button class="nav-right" disabled>→</button>
+        <input type="text" value="uiverse.io" />
+        <button class="menu">⋮</button>
+        <button class="star">✰</button>
+      </div>
+
+      <div class="browser-content" id="browser-content">
+        <p>
+          Welcome to <strong>Uiverse.io</strong>! Explore UI components and
+          inspirations.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll(".tab-open");
+      const input = document.querySelector(".head-browser input");
+      const content = document.getElementById("browser-content");
+
+      const tabData = {
+        uiverse: {
+          url: "uiverse.io",
+          text: "Welcome to <strong>Uiverse.io</strong>! Explore UI components and inspirations.",
+        },
+        google: {
+          url: "google.com",
+          text: "Welcome to <strong>Google</strong>! The world’s most popular search engine.",
+        },
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+
+          const id = tab.dataset.tab;
+          input.value = tabData[id].url;
+          content.innerHTML = `<p>${tabData[id].text}</p>`;
+        });
+      });
+    </script>
+  </body>
+</html>

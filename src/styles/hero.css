@@ -1,0 +1,632 @@
+/* HERO - layout + background */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.hero-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(var(--accent-rgb), 0.08),
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+/* container */
+.hero-container {
+  position: relative;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .hero-content {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* text column (keeps original sizes) */
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-text {
+    text-align: left;
+  }
+}
+
+.hero-title {
+  font-size: 3rem; /* restored */
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-name {
+  background: linear-gradient(
+    to right,
+    var(--accent),
+    var(--gold),
+    var(--accent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem; /* restored */
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+/* --- Browser Card (contains framed image or resume) --- */
+.browser-card {
+  width: 360px; /* big enough to hold 16rem frame */
+  height: 370px;
+  background: #d6d6d6;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+}
+
+/* tabs header */
+.tabs-head {
+  background-color: #353535;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-left: 15px;
+}
+
+/* left tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 6px;
+}
+
+.tab-open {
+  width: 90px;
+  height: 28px;
+  border-radius: 7px 7px 0 0;
+  background-color: #353535;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 11px;
+  position: relative;
+  z-index: 2;
+}
+
+.tab-open.active {
+  background-color: #515151;
+}
+
+/* --- RESTORE CLOSE TAB HOVER --- */
+.tabs-head .tab-open .close-tab:hover {
+  background-color: #5d5d5d;
+  border-radius: 4px;
+}
+
+/* right window controls */
+.window-opt {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 0 8px 6px 0; /* positions them lower and right-aligned properly */
+}
+
+.window-opt button {
+  height: 30px;
+  width: 30px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.window-opt button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.window-opt .window-close:hover {
+  background-color: rgb(255, 52, 52);
+}
+
+/* Browser address bar */
+.head-browser {
+  background-color: #515151;
+  height: 38px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 7px 7px 0 0;
+  margin-top: -6px;
+  position: relative; /* so we can absolutely position the star */
+}
+
+.head-browser input {
+  background-color: #3b3b3b;
+  border: 2px solid transparent;
+  height: 26px;
+  border-radius: 20px;
+  outline: none;
+  color: #fff;
+  padding: 0 36px 0 12px; /* room for the absolute star on the right */
+  flex: 1;
+  font-size: 12px;
+}
+.head-browser .nav-left,
+.head-browser .nav-right,
+.head-browser .nav-reload {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 24px; /* slightly larger for better tap area */
+  height: 24px;
+  font-weight: 600; /* boldens the arrow */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+.head-browser .nav-reload {
+  font-size: 15px; /* slightly larger to fix "thin" look */
+  transform-origin: center;
+}
+
+.head-browser .nav-left:hover,
+.head-browser .nav-right:hover,
+.head-browser .nav-reload:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+.head-browser .nav-right:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* star positioned inside the input area at right (restores original placement) */
+.head-browser .star {
+  position: absolute;
+  right: 55px;
+  top: 45%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+/* menu button remains on far right */
+.head-browser .menu {
+  margin-left: 6px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+/* browser content area - center the framed image */
+.browser-content {
+  flex: 1;
+  background: lightgray;
+  padding: 0px; /* added padding for top & bottom spacing */
+  color: #333;
+  font-family: sans-serif;
+  font-size: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Framed photo (exact same sizes as original) --- */
+.hero-image-frame {
+  position: relative;
+  width: 14rem;
+  height: 14rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* preserved original frame sizes */
+.hero-image-frame {
+  position: relative;
+  width: 16rem; /* same */
+  height: 16rem; /* same */
+}
+
+@media (min-width: 768px) {
+  .hero-image-frame {
+    width: 18rem; /* original larger size */
+    height: 18rem;
+  }
+}
+
+/* gold border frame */
+.hero-image-border {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    var(--gold),
+    rgba(var(--gold-rgb), 0.6)
+  );
+  border-radius: 1rem;
+  padding: 0.25rem;
+}
+
+/* inner container */
+.hero-image-container {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* subtle glow behind frame */
+.hero-image-glow {
+  position: absolute;
+  inset: -0.5rem;
+  background: linear-gradient(
+    to right,
+    rgba(var(--accent-rgb), 0.14),
+    rgba(var(--gold-rgb), 0.12)
+  );
+  border-radius: 1rem;
+  filter: blur(18px);
+  z-index: -1;
+}
+
+/* CTA Buttons (restored exactly) */
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .hero-buttons {
+    flex-direction: row;
+  }
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.22s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+.btn-primary:hover {
+  background-color: rgba(var(--accent-rgb), 0.9);
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background-color: transparent;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(var(--gold-rgb), 0.06);
+}
+
+/* Scroll indicator (restored) */
+.hero-scroll-indicator {
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+  animation: bounce 2s infinite;
+}
+
+.scroll-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--muted-foreground);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.5rem);
+  }
+}
+
+/* resume iframe placeholder (commented usage allowed) */
+.resume-frame {
+  width: 100%;
+  height: 150px;
+  border: none;
+  border-radius: 6px;
+}
+
+/* --- Chrome-like curved tab edges (aligned + transparent) --- */
+.tabs-head .tab-open {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* show curves only on active tab */
+.tab-open:not(.active) .rounded-l,
+.tab-open:not(.active) .rounded-r {
+  display: none;
+}
+
+/* shared base styles */
+.tabs-head .tab-open .rounded-l,
+.tabs-head .tab-open .rounded-r {
+  position: absolute;
+  width: 21px;
+  height: 22px;
+  top: 6px; /* lowered for better alignment */
+  background: inherit; /* inherits active tab background */
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* RIGHT curve (to next tab) */
+.tabs-head .tab-open .rounded-l {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.tabs-head .tab-open .rounded-l .mask-round {
+  width: 100%;
+  height: 100%;
+  background-color: #353535; /* bar color behind tabs */
+  border-radius: 0 0 0 7px;
+}
+
+/* LEFT curve (to previous tab) */
+.tabs-head .tab-open .rounded-r {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.tabs-head .tab-open .rounded-r .mask-round {
+  width: 100%;
+  height: 100%;
+  background-color: #353535; /* bar color behind tabs */
+  border-radius: 0 0 7px 0;
+}
+
+/* PDF Mockup Container */
+.resume-mockup {
+  width: 100%;
+  height: 100%;
+  background: #2e2e2e;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Toolbar */
+.pdf-toolbar {
+  height: 38px;
+  background: #3a3a3a;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  font-size: 12px;
+}
+
+.pdf-toolbar .tool-btn {
+  margin: 0 6px;
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.left-tools,
+.center-tools,
+.right-tools {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.download-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.download-btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* PDF Page Mockup */
+.pdf-page {
+  background: #b9b9b9;
+  margin: 20px auto;
+  width: 90%;
+  height: 260px;
+  border-radius: 4px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.pdf-inner-text {
+  width: 90%;
+  height: 100%;
+  overflow: hidden;
+  font-size: 10px;
+  line-height: 1.4;
+  color: #333;
+  background: white;
+  padding: 20px;
+  border-radius: 4px;
+}
+/* Make PDF viewer full-size */
+.resume-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Expand PDF page to full available space */
+.pdf-page {
+  flex: 1;
+  background: #b9b9b9;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+/* Inner text stays centered */
+.pdf-inner-text {
+  width: 80%;
+  min-height: 100%;
+  background: white;
+  padding: 22px;
+  border-radius: 6px;
+  color: #333;
+  font-size: 12px;
+  line-height: 1.45;
+  position: relative;
+}
+
+/* Bottom download button */
+.pdf-download-bottom {
+  margin-top: 45px;
+  background: #c92531;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 29px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pdf-download-bottom:hover {
+  background: #c72f3a;
+  transform: translateY(-1px);
+}
+.center-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* spacing between all items */
+}
+
+.zoom {
+  background-color: rgb(10, 10, 10);
+  padding: 2px 4px;
+}
+
+.page-indicator {
+  margin: 0 12px; /* extra spacing on left and right of page indicator */
+  font-weight: 500; /* optional, to differentiate it visually */
+  background-color: rgb(10, 10, 10);
+  padding: 2px 4px;
+}
