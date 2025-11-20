@@ -99,7 +99,7 @@ export default function Hero() {
                     <div className="hero-image-border">
                       <div className="hero-image-container">
                         <img
-                          src="src\public\professional-headshot.png"
+                          src="../public/professional-headshot.png"
                           alt="Alex's profile picture"
                           className="hero-image"
                         />
