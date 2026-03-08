@@ -1,13 +1,27 @@
-import React, { useState } from "react";
 import { FaFilePdf } from "react-icons/fa"; // PDF icon
 import { FaDownload } from "react-icons/fa"; // download icon
 import "../styles/hero.css";
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState("photo");
+  const [profileImage, setProfileImage] = useState(null);
+  useEffect(() => {
+    async function fetchPfp() {
+      const ref = doc(db, "PFP", "pfp");
+      const snap = await getDoc(ref);
 
+      if (snap.exists()) {
+        setProfileImage(snap.data().pfp);
+      }
+    }
+
+    fetchPfp();
+  }, []);
+  const [activeTab, setActiveTab] = useState("photo");
   const tabData = {
-    photo: { url: "gyver-portfolio.io" },
+    photo: { url: "matt-portfolio.io" },
     resume: { url: "resume.pdf" },
   };
 
@@ -21,7 +35,7 @@ export default function Hero() {
           {/* Text content */}
           <div className="hero-text">
             <h1 className="hero-title">
-              Hi, I'm <span className="hero-name">Gyver</span>
+              Hi, I'm <span className="hero-name">Matthew</span>
             </h1>
             <p className="hero-subtitle">
               Web Developer crafting beautiful, responsive, and user- <br></br>
@@ -98,11 +112,14 @@ export default function Hero() {
                     {/* Gold border frame */}
                     <div className="hero-image-border">
                       <div className="hero-image-container">
-                        <img
-                          src="../public/professional-headshot.png"
-                          alt="Alex's profile picture"
-                          className="hero-image"
-                        />
+                        {profileImage && (
+                          <img
+                            src={profileImage}
+                            alt="Matt's profile picture"
+                            className="hero-image"
+                            loading="lazy"
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="hero-image-glow" />

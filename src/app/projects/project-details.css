@@ -1,0 +1,244 @@
+.project-detail-page {
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.detail-header {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--muted);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.back-link:hover {
+  gap: 0.5rem;
+  opacity: 0.8;
+}
+
+.detail-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.detail-hero {
+  margin-bottom: 3rem;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: cover;
+  display: block;
+}
+
+.detail-content {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 3rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .detail-content {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--foreground);
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .detail-title {
+    font-size: 2rem;
+  }
+}
+
+.detail-subtitle {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  margin: 0 0 2.5rem 0;
+  line-height: 1.5;
+}
+
+.detail-section {
+  margin-bottom: 3rem;
+}
+
+.detail-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  color: var(--accent);
+}
+
+.detail-section p {
+  color: var(--muted-foreground);
+  line-height: 1.8;
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.detail-section p:last-child {
+  margin-bottom: 0;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  padding: 0.75rem 0;
+  padding-left: 2rem;
+  position: relative;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.features-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.tech-stack {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.tech-card {
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.15);
+}
+
+.tech-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  color: var(--accent);
+}
+
+.tech-card p {
+  margin: 0;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.challenge-item {
+  background-color: var(--muted);
+  border-left: 4px solid var(--accent);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.challenge-item h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  color: var(--foreground);
+}
+
+.challenge-item p {
+  color: var(--muted-foreground);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+
+.challenge-item p:last-child {
+  margin-bottom: 0;
+}
+
+.solution {
+  font-style: italic;
+  color: var(--foreground);
+}
+
+.detail-cta {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+  border-radius: 0.75rem;
+  text-align: center;
+}
+
+.detail-cta p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-foreground);
+  margin: 0 0 1.5rem 0;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--accent-foreground);
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 640px) {
+  .detail-content {
+    padding: 1.5rem;
+  }
+
+  .detail-title {
+    font-size: 1.75rem;
+  }
+
+  .detail-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .tech-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-cta {
+    padding: 1.5rem;
+  }
+}

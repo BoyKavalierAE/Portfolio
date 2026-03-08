@@ -98,13 +98,22 @@
 .browser-card {
   width: 360px; /* big enough to hold 16rem frame */
   height: 370px;
-  background: #d6d6d6;
+  /* background: #353535; */
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.25);
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.25),
+    0 10px 30px rgba(0, 0, 0, 0.18);
   flex-shrink: 0;
+}
+
+[data-theme="dark"] .browser-card {
+  box-shadow:
+    0 0 40px rgba(var(--accent-rgb), 0.45),
+    0 0 80px rgba(var(--gold-rgb), 0.25),
+    0 30px 70px rgba(0, 0, 0, 0.6);
 }
 
 /* tabs header */
@@ -220,7 +229,9 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
 }
 .head-browser .nav-reload {
   font-size: 15px; /* slightly larger to fix "thin" look */
@@ -255,7 +266,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease, text-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
 /* menu button remains on far right */
@@ -488,7 +501,7 @@
 .resume-mockup {
   width: 100%;
   height: 100%;
-  background: #2e2e2e;
+  /* background: #2e2e2e; */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -531,7 +544,7 @@
 }
 
 .download-btn:hover {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 /* PDF Page Mockup */
@@ -629,4 +642,9 @@
   font-weight: 500; /* optional, to differentiate it visually */
   background-color: rgb(10, 10, 10);
   padding: 2px 4px;
+}
+/* Prevent theme transition from affecting browser card */
+.browser-card,
+.browser-card * {
+  transition: none !important;
 }
