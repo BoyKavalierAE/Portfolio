@@ -161,7 +161,7 @@ export default function Hero() {
                       {/* Download button MOVED TO BOTTOM */}
                       <button
                         className="pdf-download-bottom"
-                        onClick={() => (window.location.href = "/resume.pdf")}
+                        onClick={() => (window.location.href = "/Resume.pdf")}
                       >
                         <FaFilePdf size={18} />
                         <span>Download PDF</span>
