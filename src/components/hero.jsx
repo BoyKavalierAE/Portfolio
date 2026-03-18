@@ -96,8 +96,8 @@ export default function Hero() {
 
             {/* Browser Navigation */}
             <div className="head-browser">
-              <button className="nav-left">🡰</button>
-              <button className="nav-right">🡲</button>
+              <button className="nav-left">←</button>
+              <button disabled className="nav-right">→</button>
               <button className="nav-reload">⟳</button>
               <input type="text" value={tabData[activeTab].url} readOnly />
               <button className="star">✰</button>

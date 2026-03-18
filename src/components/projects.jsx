@@ -1,32 +1,30 @@
-
-import "../styles/projects.css"
-import {Link} from "react-router-dom"
-import { useState, useEffect } from "react"
-import { collection, getDocs } from "firebase/firestore"
-import { db } from "../firebase"
+import "../styles/projects.css";
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase";
 
 export default function Projects() {
-  const [selectedProject, setSelectedProject] = useState(null)
-const [projects, setProjects] = useState([])
-useEffect(() => {
-  const fetchProjects = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "PROJECTS"))
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [projects, setProjects] = useState([]);
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "PROJECTS"));
 
-      const projectList = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }))
+const projectList = querySnapshot.docs.map((doc) => ({
+  id: doc.id, // doc.id is "portfolio", not the number 1
+  ...doc.data(),
+}));
 
-      setProjects(projectList)
-    } catch (error) {
-      console.error("Error fetching projects:", error)
-    }
-  }
+        setProjects(projectList);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
 
-  fetchProjects()
-}, [])
-
+    fetchProjects();
+  }, []);
 
   return (
     <>
@@ -88,7 +86,9 @@ useEffect(() => {
 
             <div className="modal-body">
               <h2 className="modal-title">{selectedProject.title}</h2>
-              <p className="modal-description">{selectedProject.fullDescription}</p>
+              <p className="modal-description">
+                {selectedProject.fullDescription}
+              </p>
 
               <div className="modal-tags">
                 {selectedProject.tags.map((tag, i) => (
@@ -99,7 +99,10 @@ useEffect(() => {
               </div>
 
               <div className="modal-actions">
-                <Link to={`${selectedProject.link}?from=home`} className="modal-button details-button">
+                <Link
+                  to={`/projects/${selectedProject.id}?from=home`}
+                  className="modal-button details-button"
+                >
                   View Details
                 </Link>
                 <Link to="/projects" className="modal-button projects-button">
@@ -111,5 +114,5 @@ useEffect(() => {
         </div>
       )}
     </>
-  )
+  );
 }

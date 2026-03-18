@@ -37,17 +37,94 @@
   margin: 0;
 }
 
-.contact-buttons {
+.contact-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  justify-content: center;
+  gap: 1.5rem;
   padding-top: 2rem;
+  padding: 2rem;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
 }
 
-@media (min-width: 640px) {
-  .contact-buttons {
-    flex-direction: row;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.form-input,
+.form-textarea {
+  padding: 0.75rem 1rem;
+  background-color: var(--background-solid);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 100, 200, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-submit {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-submit:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 100, 200, 0.3);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
+.form-success {
+  padding: 1rem;
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 0.5rem;
+  color: #22c55e;
+  text-align: center;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -75,4 +152,27 @@
 
 .social-link:hover {
   color: var(--accent);
+}
+/* Center the captcha and match input width */
+.captcha-group {
+  display: flex;
+  justify-content: center;
+}
+
+.captcha-wrapper {
+  width: 100%;              /* full width of form group */
+  max-width: 100%;          /* no overflow */
+  display: flex;
+  justify-content: center;   /* center iframe */
+}
+
+.captcha-wrapper > div {
+  transform: scale(0.92);    /* slightly smaller to match input width */
+  transform-origin: top center;
+}
+
+.captcha-wrapper iframe {
+  width: 304px !important;   /* default iframe width */
+  height: 78px !important;   /* default iframe height */
+  border-radius: 0.5rem;     /* visually match input border radius */
 }

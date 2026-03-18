@@ -224,7 +224,6 @@
   border-radius: 50%;
   width: 24px; /* slightly larger for better tap area */
   height: 24px;
-  font-weight: 600; /* boldens the arrow */
   display: flex;
   align-items: center;
   justify-content: center;
