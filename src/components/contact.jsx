@@ -154,12 +154,12 @@ export default function Contact() {
             <a href="#" className="social-link">
               GitHub
             </a>
-            <a href="#" className="social-link">
+            {/* <a href="#" className="social-link">
               Twitter
             </a>
             <a href="#" className="social-link">
               LinkedIn
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

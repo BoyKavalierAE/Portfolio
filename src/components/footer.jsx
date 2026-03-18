@@ -4,9 +4,9 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-container">
-        <p className="footer-text">© {new Date().getFullYear()} Alex's Portfolio. All rights reserved.</p>
+        <p className="footer-text">© {new Date().getFullYear()} Matt's Portfolio. All rights reserved.</p>
         <div className="footer-links">
-          <a href="#" className="footer-link">
+          {/* <a href="#" className="footer-link">
             Privacy
           </a>
           <a href="#" className="footer-link">
@@ -14,7 +14,7 @@ export default function Footer() {
           </a>
           <a href="#" className="footer-link">
             Sitemap
-          </a>
+          </a> */}
         </div>
       </div>
     </footer>

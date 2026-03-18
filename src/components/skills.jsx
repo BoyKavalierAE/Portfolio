@@ -1,20 +1,20 @@
-import "../styles/skills.css"
+import "../styles/skills.css";
 
 export default function Skills() {
   const skillCategories = [
     {
       category: "Frontend",
-      skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      skills: ["React", "Next.js", "HTML || CSS", "JavaScript", "Bootstrap"],
     },
     {
       category: "Backend",
-      skills: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
+      skills: ["Node.js", "Express", "Firebase", "PostgreSQL", "PHP MySQL", "Java", "Python", "Flask"],
     },
     {
       category: "Tools & Platforms",
       skills: ["Git", "GitHub", "Vercel", "Docker", "VS Code"],
     },
-  ]
+  ];
 
   return (
     <section id="skills" className="skills">
@@ -38,5 +38,5 @@ export default function Skills() {
         </div>
       </div>
     </section>
-  )
+  );
 }

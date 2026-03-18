@@ -4,6 +4,7 @@ import "../styles/hero.css";
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { FaArrowLeft, FaArrowRight, FaRedo } from "react-icons/fa";
 
 export default function Hero() {
   const [profileImage, setProfileImage] = useState(null);
@@ -96,9 +97,13 @@ export default function Hero() {
 
             {/* Browser Navigation */}
             <div className="head-browser">
-              <button className="nav-left">←</button>
-              <button disabled className="nav-right">→</button>
-              <button className="nav-reload">⟳</button>
+              <button className="nav-left">
+                <FaArrowLeft size={10} />
+              </button>
+              <button disabled className="nav-right">
+                <FaArrowRight size={10} />
+              </button>
+              <button className="nav-reload"><FaRedo size={10} /></button>
               <input type="text" value={tabData[activeTab].url} readOnly />
               <button className="star">✰</button>
               <button className="menu">⋮</button>
@@ -153,20 +158,29 @@ export default function Hero() {
                   {/* Full-page document */}
                   <div className="pdf-page">
                     <div className="pdf-inner-text">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Maecenas pretium tristique nisi at maximus. Duis nec nisl
-                      eget nibh mattis pharetra...
+                      I am Matthew McGyver Zafra, a recent graduate with a
+                      degree in Information Technology from Dr. Yanga's College,
+                      Inc., with a focus on Programming and Networking.
                       <br />
                       <br />
                       {/* Download button MOVED TO BOTTOM */}
-                      <button
-                        className="pdf-download-bottom"
-                        onClick={() => (window.location.href = "/Resume.pdf")}
-                      >
-                        <FaFilePdf size={18} />
-                        <span>Download PDF</span>
-                        <FaDownload size={16} className="pdf-download-icon" />
-                      </button>
+                      <div style={{ display: "flex", gap: "10px" }}>
+                        <button
+                          onClick={() => window.open("/Resume.pdf", "_blank")}
+                          className="pdf-download-bottom"
+                        >
+                          View Resume
+                          <FaFilePdf size={18} />
+                        </button>
+
+                        <a
+                          href="/Resume.pdf"
+                          download
+                          className="pdf-download-bottom"
+                        >
+                          <FaDownload />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
