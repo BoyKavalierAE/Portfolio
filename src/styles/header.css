@@ -219,6 +219,7 @@
   position: absolute;
   cursor: pointer;
   margin: 0;
+  z-index: 3; /* clickable layer */
 }
 .switch {
   transform: scale(0.9);
@@ -234,6 +235,7 @@
   bottom: 0;
   background-color: var(--card);
   transition: .4s;
+  z-index: 1;
 }
 
 .off {
@@ -245,6 +247,7 @@
   transition: .4s;
   image-rendering: pixelated;
   opacity: 1;
+   z-index: 2; /* above slider */
 }
 
 .on {
@@ -256,10 +259,19 @@
   transition: .4s;
   image-rendering: pixelated;
   opacity: 0;
+  z-index: 2; /* above slider */
 }
 
 .switch input:checked + .slider {
   background-color: var(--muted-foreground);
+}
+/* default state */
+.off {
+  opacity: 1;
+}
+
+.on {
+  opacity: 0;
 }
 
 /* .switch input:focus + .slider {
