@@ -245,6 +245,9 @@
 .head-browser .nav-right:disabled {
   opacity: 0.4;
 }
+.nav-left {
+  margin-right: -5px;
+}
 
 /* star positioned inside the input area at right (restores original placement) */
 .head-browser .star {
@@ -644,7 +647,4 @@
 .browser-card,
 .browser-card * {
   transition: none !important;
-}
-.nav-left {
-  margin-right: -5px;
 }
