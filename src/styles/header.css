@@ -240,7 +240,7 @@
 
 .off {
   position: absolute;
-  content: "";
+
   height: 2em;
   width: 2em;
   background-color: white;
@@ -252,7 +252,7 @@
 
 .on {
   position: absolute;
-  content: "";
+
   height: 2em;
   width: 2em;
   background-color: white;
