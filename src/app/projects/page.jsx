@@ -61,9 +61,10 @@ export default function AllProjectsPage() {
             >
               <div className="project-page-image-wrapper">
                 <img
-                  src={project.image}
-                  alt={project.title}
+                  src={project.image || "/placeholder.jpeg"}
+                  alt={project.title || "Project image"}
                   className="project-page-image"
+                  onError={(e) => (e.target.src = "/placeholder.jpeg")}
                 />
               </div>
 
@@ -99,9 +100,10 @@ export default function AllProjectsPage() {
             </button>
 
             <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
+              src={selectedProject.image || "/placeholder.jpeg"}
+              alt={selectedProject.title || "Project image"}
               className="modal-image"
+              onError={(e) => (e.target.src = "/placeholder.jpeg")}
             />
 
             <div className="modal-body">

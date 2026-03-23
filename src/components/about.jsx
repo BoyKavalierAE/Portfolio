@@ -1,4 +1,4 @@
-import "../styles/about.css"
+import "../styles/about.css";
 
 export default function About() {
   return (
@@ -9,22 +9,25 @@ export default function About() {
         <div className="about-content">
           <div className="about-text">
             <p>
-              I'm a passionate web developer specializing in building beautiful, functional web applications using React
-              and modern web technologies. With a focus on clean code and user experience, I transform ideas into
-              engaging digital solutions.
+              I'm a passionate programmer specializing in building beautiful,
+              functional web applications using React and modern web
+              technologies. With a focus on speed and efficiency, I transform
+              ideas into engaging digital solutions.
             </p>
             <p>
-              My journey in web development has taught me that great websites aren't just about aesthetics—they're about
-              creating seamless experiences that solve real problems for users.
+              My journey in web development has taught me that great websites
+              aren't just about aesthetics—they're about creating seamless
+              experiences that solve real problems for users.
             </p>
             <p>
-              When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or
-              sharing knowledge with the developer community.
+              When I'm not coding, you can find me exploring new technologies,
+              learning about other programming languages, or working on personal
+              projects to sharpen my skills.
             </p>
           </div>
 
           <div className="about-stats">
-            <div className="stat-card">
+            {/* <div className="stat-card">
               <div className="stat-number">50+</div>
               <p className="stat-label">Projects Completed</p>
             </div>
@@ -39,10 +42,10 @@ export default function About() {
             <div className="stat-card">
               <div className="stat-number">100%</div>
               <p className="stat-label">Satisfaction Rate</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

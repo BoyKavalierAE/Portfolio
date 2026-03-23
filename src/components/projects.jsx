@@ -12,10 +12,19 @@ export default function Projects() {
       try {
         const querySnapshot = await getDocs(collection(db, "PROJECTS"));
 
-const projectList = querySnapshot.docs.map((doc) => ({
-  id: doc.id, // doc.id is "portfolio", not the number 1
-  ...doc.data(),
-}));
+        const projectList = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+
+          return {
+            id: doc.id,
+            title: data.title || "Untitled Project",
+            description: data.description || "No description available.",
+            fullDescription:
+              data.fullDescription || "No additional details provided.",
+            image: data.image || "/placeholder.jpeg", // add a default image in public/
+            tags: Array.isArray(data.tags) ? data.tags : [],
+          };
+        });
 
         setProjects(projectList);
       } catch (error) {
@@ -46,16 +55,17 @@ const projectList = querySnapshot.docs.map((doc) => ({
               >
                 <div className="project-image-wrapper">
                   <img
-                    src={project.image}
-                    alt={project.title}
+                    src={project.image || "/placeholder.jpeg"}
+                    alt={project.title || "Project image"}
                     className="project-image"
+                    onError={(e) => (e.target.src = "/placeholder.jpeg")}
                   />
                 </div>
                 <div className="project-content">
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">{project.description}</p>
                   <div className="project-tags">
-                    {project.tags.map((tag, i) => (
+                    {(project.tags || []).map((tag, i) => (
                       <span key={i} className="project-tag">
                         {tag}
                       </span>
@@ -79,9 +89,10 @@ const projectList = querySnapshot.docs.map((doc) => ({
             </button>
 
             <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
+              src={selectedProject.image || "/placeholder.jpeg"}
+              alt={selectedProject.title || "Project image"}
               className="modal-image"
+              onError={(e) => (e.target.src = "/placeholder.jpeg")}
             />
 
             <div className="modal-body">
@@ -91,7 +102,7 @@ const projectList = querySnapshot.docs.map((doc) => ({
               </p>
 
               <div className="modal-tags">
-                {selectedProject.tags.map((tag, i) => (
+                {(selectedProject.tags || []).map((tag, i) => (
                   <span key={i} className="modal-tag">
                     {tag}
                   </span>

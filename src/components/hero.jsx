@@ -39,7 +39,7 @@ export default function Hero() {
               Hi, I'm <span className="hero-name">Matthew</span>
             </h1>
             <p className="hero-subtitle">
-              Web Developer crafting beautiful, responsive, and user- <br></br>
+              Developing and crafting beautiful, responsive, and user- <br></br>
               friendly digital experiences
             </p>
           </div>
