@@ -19,15 +19,22 @@ function ScrollToHash() {
   const { hash } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      // small delay ensures DOM is ready
-      setTimeout(() => {
-        const el = document.querySelector(hash);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 0);
-    }
+    if (!hash) return;
+
+    let intervalId = setInterval(() => {
+      const el = document.querySelector(hash);
+      if (el) {
+        const headerOffset = 80; // adjust to your header height
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+        clearInterval(intervalId);
+      }
+    }, 200); // check every 200ms until element exists
+
+    // Cleanup in case component unmounts
+    return () => clearInterval(intervalId);
   }, [hash]);
 
   return null;
