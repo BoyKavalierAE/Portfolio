@@ -128,7 +128,7 @@ export default function ProjectDetail() {
           )}
 
           <div className="detail-cta">
-            <p>Need analytics for your social media or business?</p>
+            <p>Need a similar project or have questions?</p>
 
             <Link to="/#contact" className="cta-button">
               Get in Touch
