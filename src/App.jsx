@@ -31,7 +31,7 @@ function ScrollToHash() {
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         clearInterval(intervalId);
       }
-    }, 200); // check every 2 00ms until element exists
+    }, 200); // check every 200ms until element exists
 
     // Cleanup in case component unmounts
     return () => clearInterval(intervalId);
