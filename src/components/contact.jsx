@@ -1,9 +1,10 @@
 import "../styles/contact.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "emailjs-com";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
+  const recaptchaRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -47,10 +48,14 @@ export default function Contact() {
       )
       .then(
         (result) => {
-          console.log("SUCCESS!", result.text);
+          // console.log("SUCCESS!", result.text);
           setIsSubmitted(true);
           setFormData({ name: "", email: "", message: "" });
           setLoading(false); // 👈 already correct
+
+          // ✅ Reset captcha
+          recaptchaRef.current.reset();
+          setCaptchaValue(null);
 
           setTimeout(() => setIsSubmitted(false), 3000);
         },
@@ -130,6 +135,7 @@ export default function Contact() {
           <div className="form-group captcha-group">
             <div className="captcha-wrapper">
               <ReCAPTCHA
+                ref={recaptchaRef}
                 sitekey="6Lf72I0sAAAAAFSJfHsoZULpXLWPHfg0GQxZH8MR"
                 onChange={(value) => setCaptchaValue(value)}
               />
